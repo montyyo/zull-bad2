@@ -155,7 +155,7 @@ public class Game
         //       System.out.println("Your command words are:");
        //         System.out.println("   go quit help");
        //a option
-       parser.showAllCommands().shawAll();
+       parser.showAllCommands();
         
     }
 
