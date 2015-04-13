@@ -42,13 +42,14 @@ public class CommandWords
     /**
      * print all valid commands to system.out
      */
-    public void showAll()
+    public void shawAll()
     {
-        System.out.println("comandos disponibles");
-        for(int i = 0; i < validCommands.length; i++)
-        {
-            System.out.println(validCommands[i]);
-        }
+                System.out.println("comandos disponibles");
+                for(int i = 0; i < validCommands.length; i++)
+                {
+                        System.out.println(validCommands[i]);
+                }
+        
     }
    
 }
