@@ -34,16 +34,16 @@ public class Game
      */
     private void createRooms()
     {
-
+        //SOLO CREAMOS UN OBJETO POR HABITACION
+        //mejor la b 
         // create the rooms
-        Room entrada = new Room("entrada");
-        Room pasillo = new Room("pasillo");
-        Room almacen = new Room("almacen");
-        Room laboratorio = new Room("laboratorio");
-        Room despacho = new Room("despacho");
-        Room banio = new Room("baño");
-        Room corredor = new Room("corredor");
-        Room salida = new Room("salida");
+        Room entrada = new Room("entrada","obj1", 10F);
+        Room pasillo = new Room("pasillo""obj1", "F10");        Room almacen = new Room("almacen","obj2",45F);
+        Room laboratorio = new Room("laboratorio" ,"obj3", 45F);
+        Room despacho = new Room("despacho","obj4", 56F);
+        Room banio = new Room("baño","obj5", 67F);
+        Room corredor = new Room("corredor","obj6", 2F);
+        Room salida = new Room("salida","obj7",F34F);
         // initialise room exits
         //salidas entrada
         entrada.setExit("east", pasillo);
