@@ -1,6 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-
+import java.util.Set;
 /**
  * Class Room - a room in an adventure game.
  *
@@ -17,11 +17,12 @@ import java.util.Iterator;
  */
 public class Room 
 {
+    // Descripción de la habitación.
     private String description;
-    private HashMap<String, Room> nextRoom;
-    
-    private String item;
-    private float weight;
+    // Salidas de la habitación y la habitación a la que dan.
+    private HashMap<String, Room> rooms;
+    // Objetos que hay en la habitación.
+    private ArrayList<Item> items;
     
     /**
      * Create a room described "description". Initially, it has
@@ -29,80 +30,39 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description,String item,float weight) 
+    public Room(String description) 
     {
         this.description = description;
-        this.nextRoom = new HashMap<>();
-        this.item = item;
-        this.weight = weight;
+        rooms = new HashMap<>();
+        items = new ArrayList<>();
     }
-
-    /**
-     * Define the exits of this room.  Every direction either leads
-     * to another room or is null (no exit there).
-     * @param north The north exit.
-     * @param east The east exit.
-     * @param southeast The southeast exit.
-     * @param south The south exit.
-     * @param west The west exit.
-     */
-    public void setExits(Room north, Room east,Room southeast, Room south, Room west) 
-    {
-        nextRoom.put("nort", north);
-        nextRoom.put("east", east);
-        nextRoom.put("southeast", southeast);
-        nextRoom.put("south", south);
-        nextRoom.put("west", west);
-    }
-
-    /**
-     * @return The description of the room.
-     */
-    public String getDescription()
-    {
-        return description;
-    }
-
     
     /**
-     * Return a long description of this room, of the form:
-     *     You are in the 'name of room'
-     *     Exits: north west southwest
-     * @return A description of the room, including exits.
+     * Añade un objeto a la habitación.
+     * @param item el objeto a añadir.
      */
-    public String getLongDescription(){
-        String longDescription = "You are " + getDescription()+ "\n" + "item" + item + "weight" + weight  + "Exits: " ;
-        longDescription += getExitString();
-
-        return longDescription;
+    public void addItem(Item item)
+    {
+        items.add(item);
     }
-
+    
     /**
-     * Return a description of the room's exits.
-     * For example: "Exits: north east west"
-     *
-     * @ return A description of the available exits.
+     * @param location el espacio que ocupa el objeto en la habitación.
+     * @return el objeto en la localización especificado.
      */
-    public String getExitString(){
-        String exit = "";
-        Iterator itNextRoom = nextRoom.keySet().iterator();
-        while(itNextRoom.hasNext()){
-            exit += itNextRoom.next() + " ";
-        }
-
-        return exit + "\n";
+    public Item getItem(int location)
+    {
+        return items.get(location);
     }
-
+    
     /**
-     * retona la habitacion de salida en la coordenada indicada o null si no hay puerta en esa coordenada
-     * @param coordenada coordenada de la que se quiere saber la salida
-     * @return habitacion en la coordenada indicada o null en caso de no existir
+     * @return el numero de objetos en el inventario.
      */
-    public Room getExit(String coordenada){
-
-        return nextRoom.get(coordenada);
+    public int getNumberOfRoomItems()
+    {
+        return items.size();
     }
-
+    
     /**
      * Define an exit from this room.
      * @param direction The direction of the exit.
@@ -110,6 +70,96 @@ public class Room
      */
     public void setExit(String direction, Room neighbor)
     {
-        nextRoom.put(direction, neighbor);
+        rooms.put(direction, neighbor);
+    }
+    
+    /**
+     * @param theExit dirección de la salida.
+     * @return la habitación que esta en la salida especificada por parametro.
+     */
+    public Room getExit(String theExit)
+    {
+        return rooms.get(theExit);
+    }
+    
+    /**
+     * Return a description of the room's exits.
+     * For example: "Exits: north east west"
+     *
+     * @ return A description of the available exits.
+     */
+    public String getExitString()
+    {
+        String theExits = "";
+        Set<String> exits = rooms.keySet();
+        for (String exit : exits)
+        {
+            theExits += exit + " ";
+        }        
+        return theExits;
+    }
+      
+    /**
+     * @return The description of the room.
+     */
+    public String getDescription()
+    {
+        return description;
+    }
+    
+    /**
+     * Elimina un objeto de la habitación.
+     * @ID la ID del objeto a eliminar.
+     * @return el objeto eliminado.
+     */
+    public Item removeItem(int ID)
+    {
+        int i = 0;
+        Item removedItem = null;
+        boolean match = false;
+        while (i < items.size() && !match)
+        {
+            if (items.get(i).getID() == ID)
+            {
+                match = true;
+                removedItem = items.get(i);
+                items.remove(i);
+            }
+            i++;
+        }
+        return removedItem;
+    }
+    
+    /**
+     * @return una cadena con cada objeto con su descripción y peso en Kg.
+     */
+    private String allItemsToString()
+    {
+        String allItems = "";
+        for (Item item : items)
+        {
+            allItems += item.itemToString() + "\n";
+        }
+        return allItems;
+    }
+    
+    /**
+     * Return a long description of this room, of the form:
+     *     You are in the 'name of room'
+     *     Exits: north west southwest
+     * @return A description of the room, including exits.
+     */
+    public String getLongDescription()
+    {
+        String longDescription;
+        if (items.isEmpty())
+        {
+            longDescription = "Estás en " + getDescription() + ", no hay objetos\nSalidas: " + getExitString();
+        }
+        else
+        {
+            longDescription = "Estás en " + getDescription() + ", se hallan los siguientes objetos:\n" + allItemsToString() + "\nSalidas: " + getExitString();
+        }        
+        return longDescription;
     }
 }

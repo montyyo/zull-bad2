@@ -13,7 +13,7 @@ public class CommandWords
 {
     // a constant array that holds all valid command words
     private static final String[] validCommands = {
-        "go", "quit", "help","look","eat"
+        "go", "quit", "help" , "look", "eat", "back", "take", "drop", "inventory", "weight"
     };
 
     /**
@@ -40,16 +40,15 @@ public class CommandWords
     }
     
     /**
-     * print all valid commands to system.out
+     * Print all valid commands to System.out
      */
-    public void shawAll()
+    public void showAll()
     {
-                System.out.println("comandos disponibles");
-                for(int i = 0; i < validCommands.length; i++)
-                {
-                        System.out.println(validCommands[i]);
-                }
-        
+        String availableCommands = "";
+        for (int i = 1; i < validCommands.length; i++)
+        {
+            availableCommands += ", " + validCommands[i];
+        }
+        System.out.println("Los comandos disponibles son: \n" + validCommands[0] + availableCommands);
     }
-   
 }
