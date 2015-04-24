@@ -18,7 +18,7 @@ public class CommandWords
         //     };
         
     private HashMap<String,Option> options;
-    private Option commands;
+    private  Option commands;
     
     
     
@@ -76,9 +76,9 @@ public class CommandWords
    * @return the object Option correspondng to the paramater commandWord, or the object Option.UNKNOWN
    *         if it is not a valid command word
    */
-  public Option getCommandWord(String commandWord)
+  public  Option getCommandWord(String commandWord)
   { 
-    Option var = null;
+    Option var = options.get(commandWord);
     if(options.get(commandWord) == null)
     {
        var=Option.UNKNOWN;
