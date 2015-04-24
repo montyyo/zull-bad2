@@ -155,47 +155,47 @@ public class Game
     private boolean processCommand(Command command) 
     {
         boolean wantToQuit = false;
-        if(command.isUnknown()) {
-            System.out.println("No se a que te refieres...");
-            return false;
-        }
+//         if(command.isUnknown()) {
+//             System.out.println("No se a que te refieres...");
+//             return false;
+//         }
 
-        String commandWord = command.getCommandWord();
-        if (commandWord.equals("help")) {
+        Option commandWord = command.getCommandWord();
+        if (commandWord== Option.HELP) {
             System.out.println();
             printHelp();
         }
-        else if (commandWord.equals("go")) {
+        else if (commandWord== Option.GO) {
             goRoom(command);           
         }
-        else if (commandWord.equals("quit")) {
+        else if (commandWord== Option.QUIT) {
             wantToQuit = quit(command);
         }
-        else if (commandWord.equals("look")) {
+        else if (commandWord== Option.LOOK) {
             System.out.println();
             player.look();
         }
-        else if (commandWord.equals("eat")) {
+        else if (commandWord== Option.EAT) {
             System.out.println();
             player.eat();
         }
-        else if (commandWord.equals("back"))
+        else if (commandWord== Option.BACK)
         {
             player.back();
             System.out.println();
             player.look();
         }
-        else if(commandWord.equals("inventory"))
+        else if(commandWord== Option.INVENTORY)
         {
             System.out.println();
             player.showCurrentInventory();
         }
-        else if(commandWord.equals("weight"))
+        else if(commandWord== Option.INVENTORY)
         {
             System.out.println();
             player.showCarryWeight();
         }
-        else if (commandWord.equals("take"))
+        else if (commandWord== Option.TAKE)
         {
             System.out.println();
             if(command.hasSecondWord()) 
@@ -225,7 +225,7 @@ public class Game
                 System.out.println("¿Coger el qué?");
             }
         }
-        else if (commandWord.equals("drop"))
+        else if (commandWord== Option.DROP)
         {
             System.out.println();
             if(command.hasSecondWord()) 
@@ -254,7 +254,12 @@ public class Game
             {
                 System.out.println("¿Soltar el qué?");
             }
+           
         }
+        else if ((commandWord== Option.UNKNOWN))
+            {
+                System.out.println("no comprendo");
+            }
         return wantToQuit;
     }
 
