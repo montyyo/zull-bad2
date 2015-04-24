@@ -76,6 +76,8 @@ public class Player
      * @param item el objeto a coger.
      * @return true si ha cogido el objeto, false en caso contrario.
      */
+    //introducir id no item
+    //public Item take (String idItem)
     public void take(Item item)
     {
         if (carryWeight == capacity)

@@ -1,3 +1,4 @@
+import java.util.HashMap;
 /**
  * This class is part of the "World of Zuul" application. 
  * "World of Zuul" is a very simple, text based adventure game.  
@@ -12,18 +13,37 @@
 public class CommandWords
 {
     // a constant array that holds all valid command words
-    private static final String[] validCommands = {
-        "go", "quit", "help" , "look", "eat", "back", "take", "drop", "inventory", "weight"
-    };
-
+    //     private static final String[] validCommands = {
+        //         "go", "quit", "help" , "look", "eat", "back", "take", "drop", "inventory", "weight"
+        //     };
+        
+    private HashMap<String,Option> options;
+    private Option commands;
+    
+    
+    
     /**
      * Constructor - initialise the command words.
      */
     public CommandWords()
     {
-        // nothing to do at the moment...
+        this.options=new HashMap<>();
+        options.put("go", Option.GO);
+        options.put("quit", Option.QUIT);
+        options.put("help", Option.HELP);
+        options.put("look", Option.LOOK);
+        options.put("eat", Option.EAT);
+        options.put("back", Option.BACK);
+        options.put("take", Option.TAKE);
+        options.put("drop", Option.DROP);
+        options.put("inventory", Option.INVENTORY);
+        options.put("weight", Option.WEIGHT);
+        options.put("unknown", Option.UNKNOWN);
     }
 
+    
+    
+    
     /**
      * Check whether a given String is a valid command word. 
      * @return true if a given string is a valid command,
@@ -31,12 +51,9 @@ public class CommandWords
      */
     public boolean isCommand(String aString)
     {
-        for(int i = 0; i < validCommands.length; i++) {
-            if(validCommands[i].equals(aString))
-                return true;
-        }
-        // if we get here, the string was not found in the commands
-        return false;
+
+
+       return options.containsKey(aString);
     }
     
     /**
@@ -44,11 +61,33 @@ public class CommandWords
      */
     public void showAll()
     {
-        String availableCommands = "";
-        for (int i = 1; i < validCommands.length; i++)
+        String availableCommands = "commands\n ";
+        
+        for (String command : options.keySet())
         {
-            availableCommands += ", " + validCommands[i];
+            System.out.println(availableCommands+ " " );
         }
-        System.out.println("Los comandos disponibles son: \n" + validCommands[0] + availableCommands);
+        
     }
+    
+    /**
+   * Return the object Option associated with a word.
+   * @param commandWord The word to look up (as a string).
+   * @return the object Option correspondng to the paramater commandWord, or the object Option.UNKNOWN
+   *         if it is not a valid command word
+   */
+  public Option getCommandWord(String commandWord)
+  { 
+    Option var = null;
+    if(options.get(commandWord) == null)
+    {
+       var=Option.UNKNOWN;
+    }
+    else
+    {
+        var= options.get(commandWord);
+    }
+    return var;
+  }
+    
 }
