@@ -24,6 +24,7 @@ public class Room
     // Objetos que hay en la habitación.
     private ArrayList<Item> items;
     
+    private Portero portero;
     
     /**
      * Create a room described "description". Initially, it has
@@ -31,12 +32,12 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description) 
+    public Room(String description,String name, Item item , boolean bool) 
     {
         this.description = description;
         rooms = new HashMap<>();
         items = new ArrayList<>();
-       
+        this.portero =new Portero(name,item,bool) ;
     }
     
     /**
@@ -153,6 +154,7 @@ public class Room
      */
     public String getLongDescription()
     {
+        
         String longDescription;
         if (items.isEmpty())
         {
@@ -160,8 +162,8 @@ public class Room
         }
         else
         {
-            longDescription = "Estás en " + getDescription() + ", se hallan los siguientes objetos:\n" + allItemsToString() + "\nSalidas: " + getExitString()
-            ;
+            longDescription = "Estás en " + getDescription() + ", se hallan los siguientes objetos:\n" + allItemsToString() + "\nSalidas: " + getExitString()+ " \nportero: "+  portero.toString() ;
+           
             
         }        
         return longDescription;

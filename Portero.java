@@ -11,20 +11,27 @@ public class Portero
     private String nombre;
     private ArrayList<Item> item;
     private Item objeto;
+    private boolean exist;
     /**
      * Constructor for objects of class Portero
      */
-    public Portero(String nombre,Item objeto)
+    public Portero(String nombre,Item objeto,boolean exist)
     {
         this.nombre=nombre;
         this.objeto=objeto;
         item = new ArrayList<>();
-        
+        this.exist=exist;
     }
 
     public String getNombre()
     {
+        
         return nombre;
+    }
+    
+    public boolean getExist()
+    {
+        return exist;
     }
     
     public void getNumberOfObjets()
@@ -41,6 +48,20 @@ public class Portero
     
     public void objetoRequerido()
     {
-        System.out.println(objeto.itemToString());
+        System.out.println( "\n el guardian solicita el " +objeto.itemToString());
+    }
+    
+    public String toString()
+    {
+        String datos=null;
+        if(exist == false)
+        {
+            datos = "no hay guardian en esta sala";
+        }
+        else
+        {
+            datos = getNombre()+ " solicita el objeto"  + objeto.getDescription() + "  ID "+ objeto.getID();
+        }
+        return datos;
     }
 }
