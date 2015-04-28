@@ -155,49 +155,52 @@ public class Game
     private boolean processCommand(Command command) 
     {
         boolean wantToQuit = false;
-//         if(command.isUnknown()) {
-//             System.out.println("No se a que te refieres...");
-//             return false;
-//         }
 
         Option commandWord = command.getCommandWord();
-        if (commandWord== Option.HELP) {
+        
+        switch(commandWord){
+            case AYUDA:
             System.out.println();
             printHelp();
-        }
-        else if (commandWord== Option.GO) {
-            goRoom(command);           
-        }
-        else if (commandWord== Option.QUIT) {
-            wantToQuit = quit(command);
-        }
-        else if (commandWord== Option.LOOK) {
+            break;
+            
+            case IR:
             System.out.println();
+            printHelp();
+            break;
+            
+            case TERMINAR:
+            wantToQuit = quit(command);
+            break;
+            
+            case EXAMINAR :
+              System.out.println();
             player.look();
-        }
-        else if (commandWord== Option.EAT) {
+            break;
+            
+             case COMER:
             System.out.println();
             player.eat();
-        }
-        else if (commandWord== Option.BACK)
-        {
-            player.back();
+            break;
+            
+             case VOLVER:
+             player.back();
             System.out.println();
             player.look();
-        }
-        else if(commandWord== Option.INVENTORY)
-        {
+            break;
+            
+             case OBJETOS:
             System.out.println();
             player.showCurrentInventory();
-        }
-        else if(commandWord== Option.INVENTORY)
-        {
+            break;
+            
+             case PESO:
             System.out.println();
             player.showCarryWeight();
-        }
-        else if (commandWord== Option.TAKE)
-        {
-            System.out.println();
+            break;
+            
+            case COGER:
+             System.out.println();
             if(command.hasSecondWord()) 
             {
                 int i = 0;
@@ -224,10 +227,10 @@ public class Game
             {
                 System.out.println("¿Coger el qué?");
             }
-        }
-        else if (commandWord== Option.DROP)
-        {
-            System.out.println();
+            break;
+            
+            case SOLTAR :
+             System.out.println();
             if(command.hasSecondWord()) 
             {
                 int i = 0;
@@ -254,12 +257,15 @@ public class Game
             {
                 System.out.println("¿Soltar el qué?");
             }
-           
+            
+            
+            break;
+            case DESCONOCIDO:
+            System.out.println("No entiendo las instrucciones");
         }
-        else if ((commandWord== Option.UNKNOWN))
-            {
-                System.out.println("no comprendo");
-            }
+       
+       
+       
         return wantToQuit;
     }
 

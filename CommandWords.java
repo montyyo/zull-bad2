@@ -1,4 +1,4 @@
-import java.util.HashMap;
+import java.util.*;
 /**
  * This class is part of the "World of Zuul" application. 
  * "World of Zuul" is a very simple, text based adventure game.  
@@ -17,7 +17,7 @@ public class CommandWords
         //         "go", "quit", "help" , "look", "eat", "back", "take", "drop", "inventory", "weight"
         //     };
         
-    private HashMap<String,Option> options;
+    private ArrayList<Option> options;
     private  Option commands;
     
     
@@ -27,18 +27,20 @@ public class CommandWords
      */
     public CommandWords()
     {
-        this.options=new HashMap<>();
-        options.put("go", Option.GO);
-        options.put("quit", Option.QUIT);
-        options.put("help", Option.HELP);
-        options.put("look", Option.LOOK);
-        options.put("eat", Option.EAT);
-        options.put("back", Option.BACK);
-        options.put("take", Option.TAKE);
-        options.put("drop", Option.DROP);
-        options.put("inventory", Option.INVENTORY);
-        options.put("weight", Option.WEIGHT);
-        options.put("unknown", Option.UNKNOWN);
+        this.options=new ArrayList<>();
+        options.add(Option.IR);
+        options.add( Option.TERMINAR);
+        options.add( Option.AYUDA);
+        options.add( Option.EXAMINAR);
+        options.add( Option.COMER);
+        options.add( Option.VOLVER);
+        options.add( Option.COGER);
+        options.add( Option.SOLTAR);
+        options.add( Option.OBJETOS);
+        options.add( Option.PESO);
+        options.add( Option.DESCONOCIDO);
+        
+        //for(Option opt : Option.values()){options.add(opt);}
     }
 
     
@@ -51,9 +53,16 @@ public class CommandWords
      */
     public boolean isCommand(String aString)
     {
-
-
-       return options.containsKey(aString);
+        boolean esComando = false;
+      int index = 0;
+       while(index < options.size() && !esComando)
+       {
+           if(options.get(index).getCommand().equals(aString))            {
+                esComando = true;
+           }
+            index++;
+       }
+        return esComando;
     }
     
     /**
@@ -61,12 +70,14 @@ public class CommandWords
      */
     public void showAll()
     {
-        String availableCommands = "commands\n ";
-        
-        for (String command : options.keySet())
-        {
-            System.out.println(availableCommands+ " " );
-        }
+             String validCommands = "Los comandos son: \n";
+      for(Option command : options)
+         {
+           validCommands += command.getCommand() + " ";
+         }
+         
+         
+         System.out.println(validCommands);
         
     }
     
@@ -78,15 +89,20 @@ public class CommandWords
    */
   public  Option getCommandWord(String commandWord)
   { 
-    Option var = options.get(commandWord);
-    if(options.get(commandWord) == null)
-    {
-       var=Option.UNKNOWN;
-    }
-    else
-    {
-        var= options.get(commandWord);
-    }
+    Option var = Option.DESCONOCIDO;
+    
+    boolean encontrado = false;
+       int index = 0;
+       while(index < options.size() && !encontrado)
+       {
+        if(options.get(index).getCommand().equals(commandWord))
+            {
+                var = options.get(index);
+                encontrado = true;
+            }
+            index++;
+        }
+       
     return var;
   }
     
