@@ -24,6 +24,7 @@ public class Room
     // Objetos que hay en la habitación.
     private ArrayList<Item> items;
     
+    
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
@@ -35,6 +36,7 @@ public class Room
         this.description = description;
         rooms = new HashMap<>();
         items = new ArrayList<>();
+       
     }
     
     /**
@@ -158,7 +160,9 @@ public class Room
         }
         else
         {
-            longDescription = "Estás en " + getDescription() + ", se hallan los siguientes objetos:\n" + allItemsToString() + "\nSalidas: " + getExitString();
+            longDescription = "Estás en " + getDescription() + ", se hallan los siguientes objetos:\n" + allItemsToString() + "\nSalidas: " + getExitString()
+            ;
+            
         }        
         return longDescription;
     }

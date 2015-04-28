@@ -20,6 +20,7 @@ public class Game
 {
     private Parser parser;
     private Player player;
+    private Portero portero;
     /**
      * Create the game and initialise its internal map.
      */
@@ -41,6 +42,7 @@ public class Game
         entrada.addItem(new Item("Jarrón", 2.5F, true));
         entrada.addItem(new Item("Jarrón", 2.5F, true));
         entrada.addItem(new Item("Sofá", 50.3F, false));
+        
 
         recepcion = new Room("en recepción");
         recepcion.addItem(new Item("Silla", 3.5F, true));
@@ -48,6 +50,7 @@ public class Game
         recepcion.addItem(new Item("PC", 6.3F, true));
         recepcion.addItem(new Item("Impresora", 3.7F, true));
         recepcion.addItem(new Item("escritorio", 30F, false));
+        portero=new Portero("guardian recepcion", entrada.getItem(0));
 
         salaDeReuniones = new Room("en la sala de reuniones");
         salaDeReuniones.addItem(new Item("Silla", 3.5F, true));
@@ -165,8 +168,9 @@ public class Game
             break;
             
             case IR:
+            goRoom(command);
             System.out.println();
-            printHelp();
+          
             break;
             
             case TERMINAR:
