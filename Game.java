@@ -121,7 +121,7 @@ public class Game
     /**
      *  Main play routine.  Loops until end of play.
      */
-    public void play() 
+    public  void play() 
     {            
         printWelcome();
 
@@ -260,10 +260,10 @@ public class Game
             else
             {
                 System.out.println("¿Soltar el qué?");
-            }
-            
-            
+            }          
             break;
+            
+            
             case DESCONOCIDO:
             System.out.println("No entiendo las instrucciones");
         }
