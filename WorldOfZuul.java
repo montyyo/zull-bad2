@@ -3,7 +3,7 @@
 public class WorldOfZuul
 {
     
-    private static Game juego = new Game();
+    private static Game juego;
 
     /**
      * Constructor for objects of class WorldOfZuul
@@ -13,8 +13,9 @@ public class WorldOfZuul
        
     }
 
-    public static void main()
+    public static void main(String[] args)
     {
+        juego = new Game();
         juego.play();
     }
 }
