@@ -21,15 +21,17 @@ public class Game
     private Parser parser;
     private Player player;
     private Portero portero;
-   
+  
+    
     /**
      * Create the game and initialise its internal map.
      */
     public Game() 
     {
         parser = new Parser();
-        player = new Player("Josu", 50.3F);
+        player = new Player("Marco", 50.3F);
         createRooms();
+       
     }
 
     /**
@@ -169,7 +171,9 @@ public class Game
             break;
             
             case IR:
-            give(command);
+            goRoom(command);
+            give( command);
+            
             player.look();
             
             System.out.println();
@@ -192,6 +196,7 @@ public class Game
             
              case VOLVER:
              player.back();
+              player.look();
             System.out.println();
             
             break;
@@ -229,33 +234,46 @@ public class Game
 
     private void give(Command command)
     {
-        goRoom(command);
+       
         Item guardianObjeto=player.getCurrentRoom().itemPortero();
-        boolean find=false; 
+        boolean mark=true; 
           
-        if(player.guardianEnHab()== true)
+        if(player.guardianEnHab()== true )
         {
-            System.out.println("El guardian te pide un objeto"+ 
+            System.out.println("El guardian te pide mo objeto"+ 
                                 "\nsi no lo has recogido e intentas avanzar  volveras a la habitacion anterior");
             int i = 0;
-            
+            boolean find=false;
             while (i < player.getNumberOfInventoryItems() && !find)
                 {
                     if (player.getItem(i) ==  guardianObjeto)
                     {
                         find = true;
+                        mark = false;
                         System.out.println(" ");
                         System.out.println(" Increible Tienes ese objeto,damelo y podras continuar");
+                       
+                        player.getCurrentRoom().newObjArrayGuard(player.getItem(i));
                         player.getCurrentRoom().addItem(player.drop(player.getItem(i)));
                         player.getCurrentRoom().removeItem(guardianObjeto.getID());
-                        player.getCurrentRoom().eliminarGuardian();
                         
-                        
+                       player.getCurrentRoom().eliminarGuardian();
+                       goRoom(command);
                     }
                     i++;
                     }
         }
-            else if( find== false)
+         else if(player.guardianEnHab()== false)
+        {
+              
+               System.out.println("No hay guardian es esta sala");
+               
+                                
+               
+        }
+        
+        
+        if( mark == true && player.guardianEnHab()== true )
         {
             System.out.println(" No Tienes el objeto requerido ,encuentralo o no podras continuar");
             
@@ -263,23 +281,16 @@ public class Game
             
             
             System.out.println("");
-            System.out.println(" El guardian te envia a la habitacion anterior" );
+            System.out.println(" El guardian no te permite avanzar de habitacion " );
              System.out.println("busca el objeto o no podras continuar");
             
             player.back();
-            player.back();
+           
         }
         
-        else 
-        {
-              
-               System.out.println("No hay guardian es esta sala");
-               goRoom(command);
-                                
-               
-        }
        
-        
+       
+       
             
         
         
@@ -371,6 +382,7 @@ public class Game
             System.out.println("Ir a donde?");
             return;
         }
+        
         player.goRoom(command.getSecondWord());
         System.out.println();
         

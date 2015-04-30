@@ -23,6 +23,22 @@ public class Portero
      
     }
 
+    public void addObjeto(Item obj)
+    {
+        item.add(obj);
+    }
+    
+    public void anularGuardian()
+    {
+        if(item.size() < 0)
+        {
+            nombre="";
+            objeto=null;
+        }
+    }
+    
+   
+    
     public String getNombre()
     {
         
@@ -47,7 +63,7 @@ public class Portero
         }
     }
     
-    public void objetoRequerido()
+    public void datosObjetoRequerido()
     {
         System.out.println( "\n el guardian solicita el " +objeto.itemToString());
     }

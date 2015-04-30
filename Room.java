@@ -44,9 +44,13 @@ public class Room
     public void eliminarGuardian()
     {
         existPortero= false;
+        portero.anularGuardian();
     }
     
-   
+   public void newObjArrayGuard(Item item)
+   {
+       portero.addObjeto(item);
+   }
     
     public Item itemPortero()
     {
