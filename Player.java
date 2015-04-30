@@ -38,6 +38,11 @@ public class Player
         p++;
     }
     
+    public boolean objetoEnInventario(Item item)
+    {
+        return inventory.contains(item);
+    }
+    
     public boolean inventarioVacio()
     {
         return inventory.isEmpty();
@@ -47,6 +52,8 @@ public class Player
     {
         return currentRoom.getExistPortero();
     }
+    
+    
     
     /**
      * @param slot el hueco del inventario.

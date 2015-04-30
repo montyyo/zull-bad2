@@ -169,8 +169,9 @@ public class Game
             break;
             
             case IR:
-            give();
-            goRoom(command);
+            give(command);
+            player.look();
+            
             System.out.println();
           
             break;
@@ -226,32 +227,56 @@ public class Game
         return wantToQuit;
     }
 
-    private void give()
+    private void give(Command command)
     {
-             
+        goRoom(command);
+          boolean find=false;   
         if(player.guardianEnHab()== true)
         {
-            
+            System.out.println("El guardian te pide un objeto"+ 
+                                "\nsi no lo has recogido volveras a la habitacion anterior");
             int i = 0;
-            boolean find=false;
+            
             while (i < player.getNumberOfInventoryItems() && !find)
                 {
-                    if (player.getItem(i).getID() == portero.IDobjeto())
+                    if (player.getItem(i) ==  player.getCurrentRoom().itemPortero())
                     {
                         find = true;
-                        System.out.println(" Tienes ese objeto,damelo y podras continuar");
+                        System.out.println(" ");
+                        System.out.println(" Increible Tienes ese objeto,damelo y podras continuar");
+                        player.getCurrentRoom().eliminarGuardian();
+                        
                         
                     }
                     i++;
                     }
-            
         }
+            else if( find== false)
+        {
+            System.out.println(" No Tienes el objeto requerido ,encuentralo o no podras continuar");
+            
+            System.out.println("");
+            System.out.println("En la siguiente habitacion hay un guardian que requiere un objeto");
+            System.out.println("Los datos de la siguiente habitacion son los siguientes ");
+            player.look();
+            System.out.println("");
+            System.out.println(" El guardian te envia a la habitacion anterior" );
+             System.out.println("busca el objeto o no podras continuar");
+            
+            player.back();
+            player.back();
+        }
+        
         else 
         {
-               System.out.println("No tienes el objeto requerido para continuar" +
-                                    "\n si intentas continuar seras enviado a la habitacion anterior");
-               player.back();
-        }            
+              
+               System.out.println("No hay guardian es esta sala");
+               goRoom(command);
+                                
+               
+        }
+       
+        
             
         
         
@@ -345,7 +370,7 @@ public class Game
         }
         player.goRoom(command.getSecondWord());
         System.out.println();
-        player.look();
+        
        }
      
 

@@ -29,9 +29,9 @@ public class Portero
         return nombre;
     }
     
-   public int IDobjeto()
+   public Item objetoRequirido()
    {
-    return objeto.getID();
+    return objeto;
     
    }
     

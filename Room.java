@@ -41,6 +41,17 @@ public class Room
         this.portero =new Portero(name,item) ;
     }
     
+    public void eliminarGuardian()
+    {
+        existPortero= false;
+    }
+    
+    
+    public Item itemPortero()
+    {
+        return portero.objetoRequirido();
+    }
+    
     public boolean getExistPortero()
     {
         return existPortero;
