@@ -23,7 +23,7 @@ public class Room
     private HashMap<String, Room> rooms;
     // Objetos que hay en la habitación.
     private ArrayList<Item> items;
-    
+    private boolean existPortero;
     private Portero portero;
     
     /**
@@ -37,7 +37,13 @@ public class Room
         this.description = description;
         rooms = new HashMap<>();
         items = new ArrayList<>();
-        this.portero =new Portero(name,item,bool) ;
+        existPortero=bool;
+        this.portero =new Portero(name,item) ;
+    }
+    
+    public boolean getExistPortero()
+    {
+        return existPortero;
     }
     
     /**

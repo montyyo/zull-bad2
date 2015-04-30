@@ -44,7 +44,7 @@ public class Game
         entrada.addItem(new Item("Sofá", 50.3F, false));
          
 
-        recepcion = new Room("en recepción","guardian recepcion", entrada.getItem(0), true);
+        recepcion = new Room("en recepción","guardian recepcion", entrada.getItem(0),true);
         recepcion.addItem(new Item("Silla", 3.5F, true));
         recepcion.addItem(new Item("telefono", 1.2F, true));
         recepcion.addItem(new Item("PC", 6.3F, true));
@@ -52,14 +52,14 @@ public class Game
         recepcion.addItem(new Item("escritorio", 30F, false));
         
 
-        salaDeReuniones = new Room("en la sala de reuniones", "guardian sala de reuniones", null , false );
+        salaDeReuniones = new Room("en la sala de reuniones", "guardian sala de reuniones", null,false  );
         salaDeReuniones.addItem(new Item("Silla", 3.5F, true));
         salaDeReuniones.addItem(new Item("Silla", 3.5F, true));
         salaDeReuniones.addItem(new Item("Silla", 3.5F, true));
         salaDeReuniones.addItem(new Item("Mesa", 30.3F, false));
         salaDeReuniones.addItem(new Item("Microfono", 0.2F, true));
 
-        servicios = new Room("en los servicios", "guardian servicios", null , false);
+        servicios = new Room("en los servicios", "guardian servicios", null,false );
         servicios.addItem(new Item("Escobilla", 0.7F, true));
         servicios.addItem(new Item("Papel higienico", 0.2F, true));
         servicios.addItem(new Item("Ventana", 10.2F, false));
@@ -67,14 +67,14 @@ public class Game
         servicios.addItem(new Item("Lavabo", 10.6F, false));
         servicios.addItem(new Item("Espejo", 7.6F, true));
 
-        recursosHumanos = new Room("en recursos humanos", "guardian recursos humanos", salaDeReuniones.getItem(2) ,true);
+        recursosHumanos = new Room("en recursos humanos", "guardian recursos humanos", salaDeReuniones.getItem(2),true);
         recursosHumanos.addItem(new Item("Silla", 3.5F, true));
         recursosHumanos.addItem(new Item("PC", 3.5F, true));
         recursosHumanos.addItem(new Item("Impresora", 3.7F, true));
         recursosHumanos.addItem(new Item("Reclamaciones", 1.3F, true));
         recursosHumanos.addItem(new Item("Ficheros", 35.4F, false));
 
-        despachoDelDirector = new Room("en el despacho del director", "guardian despacho del director", null , false);
+        despachoDelDirector = new Room("en el despacho del director", "guardian despacho del director", null,false);
         despachoDelDirector.addItem(new Item("telefono", 1.2F, true));
         despachoDelDirector.addItem(new Item("Plasma", 4.3F, true));
         despachoDelDirector.addItem(new Item("Puros", 0.2F, true));
@@ -84,7 +84,7 @@ public class Game
         despachoDelDirector.addItem(new Item("Portatil", 2.5F, true));
         despachoDelDirector.addItem(new Item("Sofá", 50.3F, false));
 
-        salaDeProyecciones = new Room ("en la sala de proyecciones", "guardian sala de proyecciones", null , false);
+        salaDeProyecciones = new Room ("en la sala de proyecciones", "guardian sala de proyecciones", null,true );
         recepcion.addItem(new Item("Silla", 3.5F, true));
         recepcion.addItem(new Item("Silla", 3.5F, true));
         recepcion.addItem(new Item("Silla", 3.5F, true));
@@ -92,7 +92,7 @@ public class Game
         recepcion.addItem(new Item("Silla", 3.5F, true));
         recepcion.addItem(new Item("Silla", 3.5F, true));
         salaDeProyecciones.addItem(new Item("proyector", 4.1F, true));
-        salaDeProyecciones.addItem(new Item("Pantalla para proyector", 8.2F, false));
+        salaDeProyecciones.addItem(new Item("Pantalla para proyector", 8.2F,false));
 
         entrada.setExit("north", recepcion);
 
