@@ -46,6 +46,7 @@ public class Room
         existPortero= false;
     }
     
+   
     
     public Item itemPortero()
     {

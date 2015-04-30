@@ -193,7 +193,7 @@ public class Game
              case VOLVER:
              player.back();
             System.out.println();
-            player.look();
+            
             break;
             
              case OBJETOS:
@@ -230,20 +230,24 @@ public class Game
     private void give(Command command)
     {
         goRoom(command);
-          boolean find=false;   
+        Item guardianObjeto=player.getCurrentRoom().itemPortero();
+        boolean find=false; 
+          
         if(player.guardianEnHab()== true)
         {
             System.out.println("El guardian te pide un objeto"+ 
-                                "\nsi no lo has recogido volveras a la habitacion anterior");
+                                "\nsi no lo has recogido e intentas avanzar  volveras a la habitacion anterior");
             int i = 0;
             
             while (i < player.getNumberOfInventoryItems() && !find)
                 {
-                    if (player.getItem(i) ==  player.getCurrentRoom().itemPortero())
+                    if (player.getItem(i) ==  guardianObjeto)
                     {
                         find = true;
                         System.out.println(" ");
                         System.out.println(" Increible Tienes ese objeto,damelo y podras continuar");
+                        player.getCurrentRoom().addItem(player.drop(player.getItem(i)));
+                        player.getCurrentRoom().removeItem(guardianObjeto.getID());
                         player.getCurrentRoom().eliminarGuardian();
                         
                         
@@ -256,9 +260,8 @@ public class Game
             System.out.println(" No Tienes el objeto requerido ,encuentralo o no podras continuar");
             
             System.out.println("");
-            System.out.println("En la siguiente habitacion hay un guardian que requiere un objeto");
-            System.out.println("Los datos de la siguiente habitacion son los siguientes ");
-            player.look();
+            
+            
             System.out.println("");
             System.out.println(" El guardian te envia a la habitacion anterior" );
              System.out.println("busca el objeto o no podras continuar");
