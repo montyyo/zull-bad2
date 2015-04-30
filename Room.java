@@ -160,6 +160,15 @@ public class Room
      */
     public String getLongDescription()
     {
+        String datosPortero=null;
+        if(existPortero == true) 
+        {
+           datosPortero = portero.toString();
+        }
+        else
+        {
+           datosPortero = " no hay portero en esta sala ";
+        }
         
         String longDescription;
         if (items.isEmpty())
@@ -168,7 +177,7 @@ public class Room
         }
         else
         {
-            longDescription = "Estás en " + getDescription() + ", se hallan los siguientes objetos:\n" + allItemsToString() + "\nSalidas: " + getExitString()+ " \nportero: "+  portero.toString() ;
+            longDescription = "Estás en " + getDescription() + ", se hallan los siguientes objetos:\n" + allItemsToString() + "\nSalidas: " + getExitString()+ " \nportero: "+ datosPortero ;
            
             
         }        

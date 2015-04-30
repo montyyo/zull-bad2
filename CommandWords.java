@@ -97,8 +97,9 @@ public class CommandWords
        {
         if(options.get(index).getCommand().equals(commandWord))
             {
+                 encontrado = true;
                 var = options.get(index);
-                encontrado = true;
+               
             }
             index++;
         }

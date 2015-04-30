@@ -145,6 +145,7 @@ public class Game
         System.out.println();
         System.out.println("Bienvenido a The Office!");
         System.out.println("Escribe 'help' si necesitas ayuda.");
+        System.out.println("Escribe '" + Option.AYUDA.getCommand() +"' para ver la ayuda");
         System.out.println();        
         player.look();
         player.showCurrentInventory();
@@ -205,37 +206,33 @@ public class Game
             
             case COGER:
              System.out.println();
-            if(command.hasSecondWord()) 
-            {
-                int i = 0;
-                boolean match = false;   
-                while (i < player.getCurrentRoom().getNumberOfRoomItems() && !match)
-                {
-                    if (player.getCurrentRoom().getItem(i).getID() == Integer.parseInt(command.getSecondWord()))
-                    {
-                        match = true;
-                        player.take(player.getCurrentRoom().getItem(i));
-                    }
-                    i++;
-                }
-                if (!match)
-                {
-                    System.out.println("Ese objeto no está en la habitación");
-                }
-                else
-                {
-                    player.showCurrentInventory();
-                }
-            }
-            else
-            {
-                System.out.println("¿Coger el qué?");
-            }
+             take(command);
             break;
             
             case SOLTAR :
              System.out.println();
-            if(command.hasSecondWord()) 
+            drop(command);
+            break;
+            
+            case ENTREGAR:
+            System.out.println();
+            
+            break;
+            
+            case DESCONOCIDO:
+            System.out.println("No entiendo las instrucciones");
+        }
+       
+       
+       
+        return wantToQuit;
+    }
+
+    
+    
+    private void drop(Command command)
+    {
+        if(command.hasSecondWord()) 
             {
                 int i = 0;
                 boolean match = false;     
@@ -261,18 +258,37 @@ public class Game
             {
                 System.out.println("¿Soltar el qué?");
             }          
-            break;
-            
-            
-            case DESCONOCIDO:
-            System.out.println("No entiendo las instrucciones");
-        }
-       
-       
-       
-        return wantToQuit;
     }
-
+    
+    private void take(Command command)
+    {
+        if(command.hasSecondWord()) 
+            {
+                int i = 0;
+                boolean match = false;   
+                while (i < player.getCurrentRoom().getNumberOfRoomItems() && !match)
+                {
+                    if (player.getCurrentRoom().getItem(i).getID() == Integer.parseInt(command.getSecondWord()))
+                    {
+                        match = true;
+                        player.take(player.getCurrentRoom().getItem(i));
+                    }
+                    i++;
+                }
+                if (!match)
+                {
+                    System.out.println("Ese objeto no está en la habitación");
+                }
+                else
+                {
+                    player.showCurrentInventory();
+                }
+            }
+            else
+            {
+                System.out.println("¿Coger el qué?");
+            }
+    }
     // implementations of user commands:
 
     /**
