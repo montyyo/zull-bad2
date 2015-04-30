@@ -38,6 +38,16 @@ public class Player
         p++;
     }
     
+    public boolean inventarioVacio()
+    {
+        return inventory.isEmpty();
+    }
+    
+    public boolean guardianEnHab()
+    {
+        return currentRoom.getExistPortero();
+    }
+    
     /**
      * @param slot el hueco del inventario.
      * @return el objeto en el hueco especificado.
@@ -211,7 +221,7 @@ public class Player
         else
         {
             System.out.println();
-            System.out.println("No puedes retroceder");
+           
         }
     }
     

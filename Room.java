@@ -177,7 +177,8 @@ public class Room
         }
         else
         {
-            longDescription = "Estás en " + getDescription() + ", se hallan los siguientes objetos:\n" + allItemsToString() + "\nSalidas: " + getExitString()+ " \nportero: "+ datosPortero ;
+            longDescription = "Estás en " + getDescription() + ", se hallan los siguientes objetos:\n" + allItemsToString() +
+            "\nSalidas: " + getExitString()+ " \nportero: "+ datosPortero ;
            
             
         }        

@@ -17,8 +17,9 @@ public enum Option
      SOLTAR("soltar"), 
      OBJETOS("objetos"), 
      PESO("peso"),
-     DESCONOCIDO("desconocido"),
-     ENTREGAR("entregar");
+     DESCONOCIDO("desconocido");
+     
+     
     private String command;
     private Option(String command)
     {this.command = command;}

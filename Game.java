@@ -21,6 +21,7 @@ public class Game
     private Parser parser;
     private Player player;
     private Portero portero;
+   
     /**
      * Create the game and initialise its internal map.
      */
@@ -144,7 +145,6 @@ public class Game
     {
         System.out.println();
         System.out.println("Bienvenido a The Office!");
-        System.out.println("Escribe 'help' si necesitas ayuda.");
         System.out.println("Escribe '" + Option.AYUDA.getCommand() +"' para ver la ayuda");
         System.out.println();        
         player.look();
@@ -169,6 +169,7 @@ public class Game
             break;
             
             case IR:
+            give();
             goRoom(command);
             System.out.println();
           
@@ -214,10 +215,7 @@ public class Game
             drop(command);
             break;
             
-            case ENTREGAR:
-            System.out.println();
             
-            break;
             
             case DESCONOCIDO:
             System.out.println("No entiendo las instrucciones");
@@ -228,7 +226,36 @@ public class Game
         return wantToQuit;
     }
 
-    
+    private void give()
+    {
+             
+        if(player.guardianEnHab()== true)
+        {
+            
+            int i = 0;
+            boolean find=false;
+            while (i < player.getNumberOfInventoryItems() && !find)
+                {
+                    if (player.getItem(i).getID() == portero.IDobjeto())
+                    {
+                        find = true;
+                        System.out.println(" Tienes ese objeto,damelo y podras continuar");
+                        
+                    }
+                    i++;
+                    }
+            
+        }
+        else 
+        {
+               System.out.println("No tienes el objeto requerido para continuar" +
+                                    "\n si intentas continuar seras enviado a la habitacion anterior");
+               player.back();
+        }            
+            
+        
+        
+    }
     
     private void drop(Command command)
     {
@@ -310,6 +337,7 @@ public class Game
      */
     private void goRoom(Command command) 
     {
+        
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
             System.out.println("Ir a donde?");
@@ -318,7 +346,8 @@ public class Game
         player.goRoom(command.getSecondWord());
         System.out.println();
         player.look();
-    }
+       }
+     
 
     /** 
      * "Quit" was entered. Check the rest of the command to see
@@ -334,5 +363,5 @@ public class Game
         else {
             return true;  // signal that we want to quit
         }
-    }
+        }
 }

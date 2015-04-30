@@ -11,7 +11,7 @@ public class Portero
     private String nombre;
     private ArrayList<Item> item;
     private Item objeto;
-    
+    private Player jugador;
     /**
      * Constructor for objects of class Portero
      */
@@ -29,7 +29,11 @@ public class Portero
         return nombre;
     }
     
-   
+   public int IDobjeto()
+   {
+    return objeto.getID();
+    
+   }
     
     public void getNumberOfObjets()
     {
