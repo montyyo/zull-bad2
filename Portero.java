@@ -86,9 +86,9 @@ public class Portero
     /**
      * nos muestra los datos del objeto que requiere le guardia
      */
-    public void datosObjetoRequerido()
+    public String datosObjetoRequerido()
     {
-        System.out.println( "\n el guardian solicita el " +objeto.itemToString());
+        return "\n el guardian solicita el " +objeto.itemToString();
     }
     
     /**

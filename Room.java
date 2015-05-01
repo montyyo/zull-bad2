@@ -50,6 +50,16 @@ public class Room
         portero.anularGuardian();
     }
     
+    /** 
+     * @return objeto requerido por el guardian
+     */
+    public String datosObjetoPortero()
+    
+    {
+       
+        return  portero.datosObjetoRequerido();
+    }
+    
     /**
      * añade un objeto al array del guardia para posibles implementaciones en las que necesite varios objetos o 
      * al recibir el objeto de un jugador le regale uno

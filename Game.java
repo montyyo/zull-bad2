@@ -287,7 +287,9 @@ public class Game
             System.out.println("");
             System.out.println(" El guardian no te permite avanzar de habitacion " );
             System.out.println("busca el objeto o no podras continuar");
-            
+            System.out.println("");
+            System.out.println(player.getCurrentRoom().datosObjetoPortero());
+            System.out.println("");
             player.back();
         
         }
