@@ -21,7 +21,7 @@ public class Game
     private Parser parser;
     private Player player;
     private Portero portero;
-  
+    private long inicio;
     
     /**
      * Create the game and initialise its internal map.
@@ -31,7 +31,7 @@ public class Game
         parser = new Parser();
         player = new Player("Marco", 50.3F);
         createRooms();
-       
+       inicio = System.currentTimeMillis();
     }
 
     /**
@@ -168,35 +168,40 @@ public class Game
             case AYUDA:
             System.out.println();
             printHelp();
+            tiempoJugado();
             break;
             
             case IR:
             goRoom(command);
             give( command);
             player.look();
-            
+            tiempoJugado();
             
             System.out.println();
           
             break;
             
             case TERMINAR:
+            tiempoJugado();
             wantToQuit = quit(command);
             break;
             
             case EXAMINAR :
               System.out.println();
             player.look();
+            tiempoJugado();
             break;
             
              case COMER:
             System.out.println();
             player.eat();
+          
             break;
             
              case VOLVER:
              player.back();
               player.look();
+              
             System.out.println();
             
             break;
@@ -204,21 +209,25 @@ public class Game
              case OBJETOS:
             System.out.println();
             player.showCurrentInventory();
+            
             break;
             
              case PESO:
             System.out.println();
             player.showCarryWeight();
+            
             break;
             
             case COGER:
              System.out.println();
              take(command);
+             
             break;
             
             case SOLTAR :
              System.out.println();
             drop(command);
+           
             break;
             
             
@@ -232,6 +241,20 @@ public class Game
         return wantToQuit;
     }
 
+    /**
+     * @return tiempo de juego
+     */
+    public void tiempoJugado()
+    {
+        long finaliza = (System.currentTimeMillis() - inicio)/1000;
+        long min=finaliza / 60 ;
+        long seg = finaliza % 60;
+        System.out.println(" tiempo de juego = " + min + " minutos" + " y " + seg + " segundos");
+        
+        
+    }
+    
+    
     /**
      * metodo para comprobar si poseemos el objeto rekerido por el guardian de sala en caso de haber dicho guardian
      * @param comando de desplazamiento para avanzar en salas y saber si hay un guardian 
