@@ -173,8 +173,8 @@ public class Game
             case IR:
             goRoom(command);
             give( command);
-            
             player.look();
+            
             
             System.out.println();
           
@@ -282,10 +282,10 @@ public class Game
             
             System.out.println("");
             System.out.println(" El guardian no te permite avanzar de habitacion " );
-             System.out.println("busca el objeto o no podras continuar");
+            System.out.println("busca el objeto o no podras continuar");
             
             player.back();
-           
+        
         }
         
        
