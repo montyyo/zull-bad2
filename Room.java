@@ -41,22 +41,35 @@ public class Room
         this.portero =new Portero(name,item) ;
     }
     
+    /**
+     * metodo para anular los parametros de un guardian en una sala y que desaparezca
+     */
     public void eliminarGuardian()
     {
         existPortero= false;
         portero.anularGuardian();
     }
     
+    /**
+     * añade un objeto al array del guardia para posibles implementaciones en las que necesite varios objetos o 
+     * al recibir el objeto de un jugador le regale uno
+     */
    public void newObjArrayGuard(Item item)
    {
        portero.addObjeto(item);
    }
     
+   /**
+    * @return objeto requerido para avanzar por el guardian de la sala
+    */
     public Item itemPortero()
     {
         return portero.objetoRequirido();
     }
     
+    /**
+     * @return true si existe portero en la sala
+     */
     public boolean getExistPortero()
     {
         return existPortero;

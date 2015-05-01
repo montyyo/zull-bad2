@@ -232,6 +232,10 @@ public class Game
         return wantToQuit;
     }
 
+    /**
+     * metodo para comprobar si poseemos el objeto rekerido por el guardian de sala en caso de haber dicho guardian
+     * @param comando de desplazamiento para avanzar en salas y saber si hay un guardian 
+     */
     private void give(Command command)
     {
        
