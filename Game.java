@@ -249,7 +249,7 @@ public class Game
         long finaliza = (System.currentTimeMillis() - inicio)/1000;
         long min=finaliza / 60 ;
         long seg = finaliza % 60;
-        System.out.println(" tiempo de juego = " + min + " minutos" + " y " + seg + " segundos");
+        System.out.println("Tiempo de juego = " + min + " minutos" + " y " + seg + " segundos");
         
         
     }
@@ -267,8 +267,11 @@ public class Game
           
         if(player.guardianEnHab()== true )
         {
-            System.out.println("El guardian te pide mo objeto"+ 
+            System.out.println("*************************************************************************************");
+            System.out.println("El guardian te pide un objeto"+ 
                                 "\nsi no lo has recogido e intentas avanzar  volveras a la habitacion anterior");
+            System.out.println("*************************************************************************************");
+                                
             int i = 0;
             boolean find=false;
             while (i < player.getNumberOfInventoryItems() && !find)
@@ -277,8 +280,9 @@ public class Game
                     {
                         find = true;
                         mark = false;
-                        System.out.println(" ");
+                      System.out.println("*************************************************************************************");
                         System.out.println(" Increible Tienes ese objeto,damelo y podras continuar");
+                       System.out.println("*************************************************************************************");
                        
                         player.getCurrentRoom().newObjArrayGuard(player.getItem(i));
                         player.getCurrentRoom().addItem(player.drop(player.getItem(i)));
@@ -302,17 +306,14 @@ public class Game
         
         if( mark == true && player.guardianEnHab()== true )
         {
-            System.out.println(" No Tienes el objeto requerido ,encuentralo o no podras continuar");
-            
-            System.out.println("");
+           
             
             
-            System.out.println("");
-            System.out.println(" El guardian no te permite avanzar de habitacion " );
-            System.out.println("busca el objeto o no podras continuar");
-            System.out.println("");
+            System.out.println("*************************************************************************************");
+            System.out.println("Busca el objeto o no podras continuar");
+            
             System.out.println(player.getCurrentRoom().datosObjetoPortero());
-            System.out.println("");
+            System.out.println("*************************************************************************************");
             player.back();
         
         }
